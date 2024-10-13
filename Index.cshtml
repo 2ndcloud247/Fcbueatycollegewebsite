@@ -1,0 +1,478 @@
+﻿
+@model FcButyProject.Data.Registration
+@{
+    ViewData["Title"] = "Registration";
+}
+<style>
+    .spinner-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+
+    .spinner-border {
+        width: 5rem; /* Increase size of the spinner */
+        height: 5rem; /* Increase size of the spinner */
+    }
+
+
+</style>
+<div class="spinner-container" id="spinner" style="display:none;">
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<!-- TITLE BANNER START -->
+<section class="title-banner">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-11">
+                <div class="title-wrapper">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="title-content">
+                                <h1 class="white fw-700">Admission Process</h1>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 d-sm-block d-none">
+                            <div class="title-image">
+                                <img src="assets/media/backgrounds/title-banner.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- TITLE BANNER END -->
+<!-- Customer Container Start -->
+<div class="customer-container py-40">
+    <div class="container-fluid">
+        <div class="customer-wrapper">
+            <div class="title-box ">
+                <p class="fw-500">Continue Application? <a href="javascript:;" class="color-primary text-decoration-underline signin-button">Click here to continue</a></p>
+            </div>
+            <div class="sign-form">
+                <p class="fw-500 mb-16">If you’ve Start the Addmission process please enter your application code that was sent to your email.</p>
+                <form  method="post" enctype="multipart/form-data">
+                    <div class="row row-gap-3">
+                        <div class="col-lg-6">
+                            <div class="input-block">
+                                <input type="text" name="name" id="admissioncode" class="form-control" placeholder="Application Code">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M18.2422 2.96875H1.75781C0.786602 2.96875 0 3.76023 0 4.72656V15.2734C0 16.2455 0.792383 17.0312 1.75781 17.0312H18.2422C19.2053 17.0312 20 16.2488 20 15.2734V4.72656C20 3.76195 19.2165 2.96875 18.2422 2.96875ZM17.996 4.14062C17.6369 4.49785 11.4564 10.6458 11.243 10.8581C10.9109 11.1901 10.4695 11.3729 10 11.3729C9.53047 11.3729 9.08906 11.1901 8.75594 10.857C8.61242 10.7142 2.50012 4.63414 2.00398 4.14062H17.996ZM1.17188 15.0349V4.96582L6.23586 10.0031L1.17188 15.0349ZM2.00473 15.8594L7.06672 10.8296L7.9284 11.6867C8.48176 12.2401 9.21746 12.5448 10 12.5448C10.7825 12.5448 11.5182 12.2401 12.0705 11.6878L12.9333 10.8296L17.9953 15.8594H2.00473ZM18.8281 15.0349L13.7641 10.0031L18.8281 4.96582V15.0349Z"
+                                          fill="#141516" />
+                                </svg>
+                            </div>
+                        </div>
+                       
+                       
+                        <div class="col-lg-6">
+                            <button type="submit" class="cus-btn-3 sign-submit-btn">
+                                <span>Validate</span>
+                                <span>Validate</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Customer Container End -->
+<!-- Billing Details Start -->
+<section class="billing-detail pb-40">
+    <div class="container-fluid">
+        <div class="row row-gap-4">
+            <div class="col-xxl-0 col-xl-0">
+                <div class="title-row title-row-2 mb-24">
+                    <h5 class="fw-500 black">Personal Info</h5>
+                </div>
+                <div class="billing-wrapper mb-40">
+                    <form action="" method="post" class="contact-form mb-16" enctype="multipart/form-data">
+                           @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input asp-for="SurName" type="text"  name="surname" id="surname" class="form-control"
+                                           placeholder="Sur Name" required="" />
+                                           
+                                  <i class="fa-regular fa-user"></i>
+                                     <span asp-validation-for="SurName" class="text-danger">*</span>
+                                      
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" asp-for="FirstName" name="firstname" id="firstName" class="form-control"
+                                           placeholder="First Name">
+                                   <i class="fa-regular fa-user"></i>
+                                     <span asp-validation-for="FirstName" class="text-danger">*</span>
+                                     
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" asp-for="LastName" name="othername" id="otherName" class="form-control"
+                                           placeholder="Other Name">
+                                   <i class="fa-regular fa-user"></i>
+                                    
+                                </div>
+                            </div>
+                            <div class="shipping-radio-container">
+                            <div class="plans mb-10">
+                                <label class="plan basic-plan" for="Male">
+                                    <input type="radio" asp-for="Gender" value="Male" id="Male">
+                                    <span class="plan-content content-2">
+                                        <i class="fa-solid fa-person"></i>
+                                        <span class="plan-details">
+                                            <span class="fw-500 black">Male</span>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="plan basic-plan" for="Female">
+                                    <input type="radio" asp-for="Gender" value="Female" id="Female">
+                                    <span class="plan-content content-2">
+                                        <i class="fa-solid fa-person-dress"></i>
+                                        <span class="plan-details">
+                                            <span class="fw-500 black">Female</span>
+                                        </span>
+                                    </span>
+                                </label>
+                                 <span asp-validation-for="Gender" class="text-danger">*</span>
+                            </div>
+                            </div>
+                            <br />
+                            <div class="col-md-12">
+                                <div class="input-block mb-16" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                                    <label class="d-flex justify-content-center mb-2" for="dob">Date of Birth</label>
+                                    <div class="d-flex justify-content-between">
+                                        <select id="dob-day" class="form-select mx-1" aria-label="Select day" asp-for="Day">
+                                            <option value="">Day</option>
+                                            @for (int i = 1; i <= 31; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                         <span asp-validation-for="Day" class="text-danger">*</span>
+                                        <select id="dob-month" class="form-select mx-1" aria-label="Select month" asp-for="Month">
+                                            <option value="">Month</option>
+                                            @for (int i = 1; i <= 12; i++)
+                                            {
+                                                <option value="@i">@System.Globalization.DateTimeFormatInfo.CurrentInfo.GetMonthName(i)</option>
+                                            }
+                                        </select>
+                                         <span asp-validation-for="Month" class="text-danger">*</span>
+                                        <select id="dob-year" class="form-select mx-1" aria-label="Select year" asp-for="Year">
+                                            <option value="">Year</option>
+                                            @for (int i = DateTime.Now.Year; i >= 1950; i--)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                         <span asp-validation-for="Year" class="text-danger">*</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="country" id="country" class="form-control"
+                                           placeholder="Nationality" asp-for="Natinalty">
+                                    <i class="fa-thin fa-globe"></i>
+                                     <span asp-validation-for="Natinalty" class="text-danger">*</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="birthplace" id="birthplace" class="form-control" asp-for="Birthplace"
+                                           placeholder="Birth Place">
+                                    <i class="fa-solid fa-house"></i>
+                                     <span asp-validation-for="Birthplace" class="text-danger">*</span>
+                                </div>
+                            </div>
+                             <div class="col-md-4">
+        <div class="input-block mb-16">
+            <label class="form-label" for="ImageFile">Student picture
+            <input asp-for="ImageFile" type="file" accept="image/*" placeholder="Student Passport" class="form-control" style="display: block !important; visibility: visible !important; cursor: pointer;" />
+            </label>
+             <span asp-validation-for="ImageFile" class="text-danger">*</span>
+        </div>
+    </div>
+                           
+                        </div>
+                    
+
+                   
+                        
+                           
+                    
+
+                        <h5 class="fw-500 black mb-24">Contact Details</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-block mb-16">
+                                    <input type="email" name="email" id="email" class="form-control" asp-for="Email"
+                                           placeholder="Enter Valid Email Address">
+                                    <i class="fa-regular fa-envelope"></i>
+                                     <span asp-validation-for="Email" class="text-danger">*</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="phone" id="phone" class="form-control" asp-for=Phone
+                                           placeholder="Enter a valid phone number(can also be your whatsapp No)">
+                                    <i class="fa-solid fa-phone"></i>
+                                     <span asp-validation-for="Phone" class="text-danger">*</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="phone" id="phone" class="form-control" asp-for=PhoneMobile
+                                           placeholder="Enter a valid mobile number (optional)">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="address" id="address" class="form-control" asp-for=Address
+                                           placeholder="Enter Home Address">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                     <span asp-validation-for="Address" class="text-danger">*</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="fw-500 black mb-24">Program</h5>
+                        <div class="row">
+                             <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="highedu" id="highedu" class="form-control" asp-for=Highleveleduget
+                                           placeholder="Highest Level Of Education Attend">
+                                    <i class="fa-solid fa-turn-up"></i>
+                                     <span asp-validation-for="Highleveleduget" class="text-danger">*</span>
+                                </div>
+                            </div>
+                             <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="glevel" id="glevel" class="form-control" asp-for=gradelevelattend
+                                           placeholder="Grade/Level/Certificate Attend">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                     <span asp-validation-for="gradelevelattend" class="text-danger">*</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+    <div class="input-block mb-16">
+        <input type="text" name="yc" id="yc" class="form-control" asp-for="yearcompltion"
+               placeholder="Year Of Completion" pattern="\d{4}" maxlength="4"
+               title="Please enter a 4-digit year (e.g., 2020)">
+        <i class="fa-regular fa-calendar-days"></i>
+         <span asp-validation-for="yearcompltion" class="text-danger">*</span>
+    </div>
+</div>
+
+
+                            <div class="col-md-6">
+                                <div class="input-block mb-16">
+                                    <select class="form-select" id="programmeSelect" name="programme" asp-for="programme">
+                                        <option value="">Select Program</option>
+                                    </select>
+                                     <span asp-validation-for="programme" class="text-danger">*</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="input-block mb-16">
+                                    <select class="form-select" id="courseSelect" name="course" asp-for="course">
+                                        <option value="">Select Course</option>
+                                    </select>
+                                     <span asp-validation-for="course" class="text-danger">*</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h5 class="fw-500 black mb-24">Sponsor's Information(Where applicable)</h5>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="spname" id="spname" class="form-control" asp-for=spname
+                                           placeholder="Sponsor's Full Name">
+                                    <i class="fa-solid fa-people-line"></i>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="spnationality" id="spname" class="form-control" asp-for=Spnationality
+                                           placeholder="Sponsor's Nationality">
+                                    <i class="fa-solid fa-earth-europe"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="ocupation" id="ocupation" class="form-control" asp-for=spoccupation
+                                           placeholder="Sponsor's Occupation">
+                                    <i class="fa-regular fa-building"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="spaddress" id="spaddress" class="form-control" asp-for=spaddress
+                                           placeholder="Sponsor's home address">
+                                    <i class="fa-solid fa-location-pin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="spoffice" id="spoffice" class="form-control" asp-for=spoffice
+                                           placeholder="Sponsor's Office Address">
+                                    <i class="fa-solid fa-location-pin"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="sprel" id="sprel" class="form-control" asp-for=sprelationship
+                                           placeholder="Relationship">
+                                    <i class="fa-solid fa-user-group"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="input-block mb-16">
+                                    <input type="text" name="spphone" id="spphone" class="form-control" asp-for=spTelephone
+                                           placeholder="Sponsor's Phone No">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="fw-500 black mb-24">Medical History(Problem & Allergies)</h5>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-block mb-16">
+                                    <textarea  name="meds" id="med" class="form-control" asp-for=MedicalRrport
+                                           placeholder="Fill in any medical issues, if no medical Report, type (N/A)"></textarea>
+                                    <i class="fa-solid fa-hospital"></i>
+                                     <span asp-validation-for="MedicalRrport" class="text-danger">*</span>
+                                </div>
+                            </div>
+                             
+                           
+                        </div>
+                       
+                        <button class="cus-btn-3" type="submit">
+                            <span>Submit Application</span>
+                            <span>Submit Application</span>
+                        </button>
+                           <button class="cus-btn-3" type="submit">
+                            <span>Save Application</span>
+                            <span>Save Application</span>
+                        </button
+                        
+                        </form>
+                    </div>
+                    <!-- Payment Method -->
+                </div>
+            </div>
+           
+
+
+
+
+
+
+
+
+
+        </div>
+   
+</section>
+<!-- Billing Details End -->
+
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Function to load programmes when the page loads
+            function loadProgrammes() {
+                $.ajax({
+                    url: '/apply/GetProgrammes', // Your API endpoint
+                    type: 'GET',
+                    beforeSend: function () {
+                        $('#spinner').show(); // Show the spinner before the request
+                    },
+                    success: function (data) {
+                        $('#programmeSelect').empty(); // Clear any previous options
+                        $('#programmeSelect').append('<option value="">Select Program</option>'); // Default option
+                        $.each(data, function (index, programme) {
+                            $('#programmeSelect').append('<option value="' + programme.programmeId + '">' + programme.name + '</option>');
+                        });
+                    },
+                    error: function (error) {
+                        console.log("Error loading programmes: ", error);
+                    },
+                    complete: function () {
+                        $('#spinner').hide(); // Hide the spinner after request completes
+                    }
+                });
+            }
+
+            // Call the function to load programmes on page load
+            loadProgrammes();
+
+            // Add event listener to load courses when a programme is selected
+            $('#programmeSelect').on('change', function () {
+                var programmeId = $(this).val();
+                if (programmeId) {
+                    $('#spinner').show(); // Show the spinner before loading courses
+                    setTimeout(function () {  // Add a delay for the spinner to display before loading courses
+                        $.ajax({
+                            url: '/apply/GetCourses?programmeId=' + programmeId,
+                            type: 'GET',
+                            success: function (data) {
+                                $('#courseSelect').empty(); // Clear any previous options
+                                $('#courseSelect').append('<option value="">Select Course</option>');
+                                $.each(data, function (index, course) {
+                                    $('#courseSelect').append('<option value="' + course.courseId + '">' + course.name + '</option>');
+                                });
+                            },
+                            error: function (error) {
+                                console.log("Error loading courses: ", error);
+                            },
+                            complete: function () {
+                                setTimeout(function () {
+                                    $('#spinner').hide(); // Hide the spinner after 3 seconds delay
+                                }, 3000);  // Spinner is shown for 3 seconds
+                            }
+                        });
+                    }, 100); // Short delay before making the AJAX call to show spinner
+                } else {
+                    $('#courseSelect').empty(); // Clear courses dropdown if no programme is selected
+                    $('#courseSelect').append('<option value="">Select Course</option>');
+                }
+            });
+        });
+    </script>
+<script>
+    document.getElementById('yc').addEventListener('input', function () {
+        const value = this.value;
+        if (!/^\d{0,4}$/.test(value)) {
+            this.value = value.slice(0, 4);  // Restrict to 4 digits
+        }
+    });
+</script>
+
+
+}
